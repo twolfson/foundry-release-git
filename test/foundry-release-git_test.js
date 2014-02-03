@@ -8,6 +8,10 @@ var childUtils = require('./utils/child-process');
 var fixtureUtils = require('./utils/fixtures');
 var foundryUtils = require('./utils/foundry');
 
+// TODO: Move git init logic into its own utility
+// TODO: Ditch foundryUtils in favor of testing the `publish` method exclusively.
+
+// TODO: These are library changes. Yey.
 // TODO: Don't tag if we aren't in a `git` repo
 // TODO: Don't push if there is no remote
 
