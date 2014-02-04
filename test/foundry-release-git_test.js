@@ -1,12 +1,10 @@
 // Load in dependencies
-var expect = require('chai').expect;
 var path = require('path');
-var shell = require('shelljs');
-var sinon = require('sinon');
+var expect = require('chai').expect;
 var wrench = require('wrench');
+var gitRelease = require('../');
 var childUtils = require('./utils/child-process');
 var fixtureUtils = require('./utils/fixtures');
-var foundryUtils = require('./utils/foundry');
 
 // TODO: Move git init logic into its own utility
 // TODO: Ditch foundryUtils in favor of testing the `publish` method exclusively.
@@ -15,7 +13,7 @@ var foundryUtils = require('./utils/foundry');
 // TODO: Don't tag if we aren't in a `git` repo
 // TODO: Don't push if there is no remote
 
-describe('A release', function () {
+describe('Publishing', function () {
   describe('in a git folder', function () {
     before(function createGitFolder () {
       this.gitDir = path.join(fixtureUtils.dir, 'git_test');
@@ -39,15 +37,12 @@ describe('A release', function () {
       });
     });
 
-    before(function release (done) {
-      // Allow git tag to run without restraints and callback when done
-      var program = foundryUtils.create({
-        allowSetVersion: true,
-        allowPublish: true
-      });
-
-      program.once('publish#after', done);
-      program.parse(['node', '/usr/bin/foundry', 'release', '0.1.0']);
+    before(function publish (done) {
+      gitRelease.publish({
+        version: '0.1.0',
+        message: 'Release 0.1.0',
+        description: null
+      }, done);
     });
 
     it('adds a git tag', function (done) {
