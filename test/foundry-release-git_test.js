@@ -9,7 +9,6 @@ var fixtureUtils = require('./utils/fixtures');
 // TODO: Move git init logic into its own utility
 
 // TODO: These are library changes. Yey.
-// TODO: Don't tag if we aren't in a `git` repo
 // TODO: Don't push if there is no remote
 
 describe('Publishing', function () {
