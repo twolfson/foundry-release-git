@@ -28,14 +28,18 @@
   "scripts": {
     "test": "(test \"$VAGRANT\" = \"true\" || test \"$TRAVIS\" = \"true\" || (echo \"Tests must be run in enclosed environment (e.g. Vagrant, Travis) to prevent accidental publishes\n\" 1>&2 && exit 1)) && mocha --recursive"
   },
-  "dependencies": {},
+  "dependencies": {
+    "shelljs": "~0.2.6",
+    "shell-quote": "~1.4.1"
+  },
   "devDependencies": {
     "mocha": "~1.11.0",
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.6.0",
     "grunt-contrib-watch": "~0.4.0",
     "chai": "~1.9.0",
-    "wrench": "~1.5.6"
+    "wrench": "~1.5.6",
+    "sinon": "~1.8.1"
   },
   "keywords": [
     "foundry",
