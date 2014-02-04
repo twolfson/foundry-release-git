@@ -7,7 +7,6 @@ var gitRelease = require('../');
 var fixtureUtils = require('./utils/fixtures');
 
 // TODO: Move git init logic into its own utility
-// TODO: Ditch foundryUtils in favor of testing the `publish` method exclusively.
 
 // TODO: These are library changes. Yey.
 // TODO: Don't tag if we aren't in a `git` repo
