@@ -68,6 +68,7 @@ describe.only('Publishing', function () {
 
         // Run the callback (err, stdout, stderr)
         var cb = args[args.length - 1];
+        console.log(args);
         cb(null, '', '');
       };
     });
