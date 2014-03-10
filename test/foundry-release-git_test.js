@@ -32,8 +32,8 @@ describe('Publishing', function () {
       });
     });
 
-    before(function publish (done) {
-      gitRelease.publish({
+    before(function commit (done) {
+      gitRelease.commit({
         version: '0.1.0',
         message: 'Release 0.1.0',
         description: null
