@@ -15,7 +15,7 @@ describe('Publishing', function () {
     fixtureUtils.exec('git commit -m "Initial commit =D"');
 
     before(function publish (done) {
-      this.inFixtureDir(function () {
+      this.inBundle(function () {
         gitRelease.publish({
           version: '0.1.0',
           message: 'Release 0.1.0',
@@ -25,7 +25,7 @@ describe('Publishing', function () {
     });
 
     it('adds a git tag', function (done) {
-      this.inFixtureDir(function () {
+      this.inBundle(function () {
         exec('git tag', function (err, stdout, stderr) {
           if (err) {
             return done(err);
@@ -37,7 +37,7 @@ describe('Publishing', function () {
     });
 
     it('adds a git commit', function (done) {
-      this.inFixtureDir(function () {
+      this.inBundle(function () {
         exec('git log --format=oneline -n 1', function (err, stdout, stderr) {
           if (err) {
             return done(err);
