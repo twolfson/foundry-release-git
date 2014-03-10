@@ -1,5 +1,5 @@
 // Load in dependencies
-var childProcess = require('child_process');
+var exec = require('child_process').exec;
 var path = require('path');
 var expect = require('chai').expect;
 var wrench = require('wrench');
@@ -26,7 +26,7 @@ describe('Committing', function () {
 
     it('adds a git tag', function (done) {
       this.inBundle(function () {
-        childProcess.exec('git tag', function (err, stdout, stderr) {
+        exec('git tag', function (err, stdout, stderr) {
           if (err) {
             return done(err);
           }
@@ -38,7 +38,7 @@ describe('Committing', function () {
 
     it('adds a git commit', function (done) {
       this.inBundle(function () {
-        childProcess.exec('git log --format=oneline -n 1', function (err, stdout, stderr) {
+        exec('git log --format=oneline -n 1', function (err, stdout, stderr) {
           if (err) {
             return done(err);
           }
