@@ -8,15 +8,15 @@ var fixtureUtils = require('./utils/fixtures');
 
 describe('Committing', function () {
   describe('in a git folder', function () {
-    fixtureUtils.bundle.mkdir('git_test');
+    fixtureUtils.bundle.mkdir('commit_test');
     fixtureUtils.bundle.exec('git init');
     fixtureUtils.bundle.exec('touch a');
     fixtureUtils.bundle.exec('git add -A');
     fixtureUtils.bundle.exec('git commit -m "Initial commit =D"');
 
-    before(function publish (done) {
+    before(function commit (done) {
       this.inBundle(function () {
-        gitRelease.publish({
+        gitRelease.commit({
           version: '0.1.0',
           message: 'Release 0.1.0',
           description: null
