@@ -52,7 +52,7 @@ describe('Committing', function () {
   });
 });
 
-describe.only('Publishing', function () {
+describe('Publishing', function () {
   describe('in a git folder', function () {
     fixtureUtils.bundle.mkdir('publish_test');
     fixtureUtils.bundle.exec('git init');
