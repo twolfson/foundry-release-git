@@ -14,6 +14,7 @@ exports.mkdir = function (folderName) {
   before(function mkdirFn () {
     // Create our directory
     this.fixtureDir = path.join(exports.dir, folderName);
+    try { wrench.rmdirSyncRecursive(this.fixtureDir); } catch (e) {}
     wrench.mkdirSyncRecursive(this.fixtureDir);
 
     // Prevent accidents by guaranteeing test runs inside fixture dir
@@ -25,7 +26,7 @@ exports.mkdir = function (folderName) {
       return cb();
     };
   });
-  after(function cleanupMkdir (done) {
+  after(function cleanupMkdir () {
     // Preserve fixtureDir during cleanup
     var fixtureDir = this.fixtureDir;
 
@@ -33,8 +34,8 @@ exports.mkdir = function (folderName) {
     delete this.fixtureDir;
     delete this.inFixtureDir;
 
-    // // Remove the test directory
-    // wrench.rmdirSyncRecursive(fixtureDir);
+    // Remove the test directory
+    wrench.rmdirSyncRecursive(fixtureDir);
   });
 };
 

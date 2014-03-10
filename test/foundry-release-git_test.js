@@ -1,4 +1,5 @@
 // Load in dependencies
+var exec = require('child_process').exec;
 var path = require('path');
 var expect = require('chai').expect;
 var wrench = require('wrench');
