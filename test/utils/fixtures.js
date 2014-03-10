@@ -7,7 +7,7 @@ var wrench = require('wrench');
 
 // Set up our fixture dir
 var tmp = shell.tempdir();
-exports.dir = path.join(tmp, 'foundry_test');
+exports.dir = path.join(tmp, 'foundry_git_test');
 
 // Define helper functions to work in fixture directory
 exports.bundle = {

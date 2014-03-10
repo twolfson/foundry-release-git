@@ -49,3 +49,24 @@ describe('Committing', function () {
     });
   });
 });
+
+describe.skip('Publishing', function () {
+  describe('in a git folder', function () {
+    fixtureUtils.bundle.mkdir('publish_test');
+    fixtureUtils.bundle.exec('git init');
+    fixtureUtils.bundle.exec('touch a');
+    fixtureUtils.bundle.exec('git add -A');
+    fixtureUtils.bundle.exec('git commit -m "Initial commit =D"');
+
+    // TODO: Fixture over `exec` calls
+    before(function publish (done) {
+      this.inBundle(function () {
+        gitRelease.publish({
+          version: '0.1.0',
+          message: 'Release 0.1.0',
+          description: null
+        }, done);
+      });
+    });
+  });
+});
