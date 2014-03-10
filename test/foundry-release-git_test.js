@@ -10,14 +10,11 @@ var fixtureUtils = require('./utils/fixtures');
 
 describe('Committing', function () {
   describe('in a git folder', function () {
-    before(function createGitFolder () {
-      this.gitDir = path.join(fixtureUtils.dir, 'git_test');
-      wrench.mkdirSyncRecursive(this.gitDir);
-    });
+    fixtureUtils.mkdir('git_test');
 
     // TODO: Use premade git directory a la sexy-bash-prompt
     before(function initializeGitFolder (done) {
-      process.chdir(this.gitDir);
+      process.chdir(this.fixtureDir);
       exec('git init', function (err, stdout, stderr) {
         if (err) { return done(err); }
         exec('touch a', function (err, stdout, stderr) {

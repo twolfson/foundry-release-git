@@ -13,15 +13,28 @@ exports.dir = path.join(tmp, 'foundry_test');
 exports.mkdir = function (folderName) {
   before(function mkdirFn () {
     // Create our directory
-    this.fixtureDir = path.join(fixtureUtils.dir, folderName);
+    this.fixtureDir = path.join(exports.dir, folderName);
     wrench.mkdirSyncRecursive(this.fixtureDir);
 
     // Prevent accidents by guaranteeing test runs inside fixture dir
     process.chdir(this.fixtureDir);
+
+    // Define more helper functions for logical continuity
+    this.inFixtureDir = function (cb) {
+      process.chdir(this.fixtureDir);
+      return cb();
+    };
   });
-  after(function cleanupMkdir () {
+  after(function cleanupMkdir (done) {
+    // Preserve fixtureDir during cleanup
+    var fixtureDir = this.fixtureDir;
+
     // Prevent test leaks via cleanup
     delete this.fixtureDir;
+    delete this.inFixtureDir;
+
+    // Remove the test directory
+    wrench.rmdirSyncRecursive(fixtureDir);
   });
 };
 
