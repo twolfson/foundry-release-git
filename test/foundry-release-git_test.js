@@ -2,6 +2,8 @@
 var exec = require('child_process').exec;
 var path = require('path');
 var expect = require('chai').expect;
+var sinon = require('sinon');
+var shell = require('shelljs');
 var wrench = require('wrench');
 var gitRelease = require('../');
 var fixtureUtils = require('./utils/fixtures');
@@ -57,23 +59,13 @@ describe.only('Publishing', function () {
     fixtureUtils.bundle.exec('touch a');
     fixtureUtils.bundle.exec('git add -A');
     fixtureUtils.bundle.exec('git commit -m "Initial commit =D"');
-    var _exec = childProcess.exec;
-    before(function stubExec () {
-      var that = this;
-      this.execCalls = [];
-      childProcess.exec = function (/* cmd, options, cb */) {
-        // Preserve the arguments
-        var args = [].slice.call(arguments);
-        that.execCalls.push(args);
 
-        // Run the callback (err, stdout, stderr)
-        var cb = args[args.length - 1];
-        console.log(args);
-        cb(null, '', '');
-      };
+    // DEV: Ideally we would override `child_process.exec` but it causes complications with `shelljs`
+    before(function stubExec () {
+      this.execStub = sinon.stub(shell, 'exec');
     });
     after(function restoreExec () {
-      childProcess.exec = _exec;
+      this.execStub.restore();
     });
 
     before(function publish (done) {
@@ -86,11 +78,11 @@ describe.only('Publishing', function () {
       });
     });
 
-    it.skip('publishes the commit', function () {
-
+    it('publishes the commit', function () {
+      expect(this.execStub.args[0]).to.deep.equal(['git push']);
     });
-    it.skip('publishes the tags', function () {
-
+    it('publishes the tags', function () {
+      expect(this.execStub.args[1]).to.deep.equal(['git push --tags']);
     });
   });
 });
