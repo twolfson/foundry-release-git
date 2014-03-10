@@ -1,4 +1,6 @@
 // Load in dependencies
+var assert = require('assert');
+var exec = require('child_process').exec;
 var path = require('path');
 var shell = require('shelljs');
 var wrench = require('wrench');
@@ -6,30 +8,33 @@ var wrench = require('wrench');
 // Set up our fixture dir
 var tmp = shell.tempdir();
 exports.dir = path.join(tmp, 'foundry_test');
-before(function deleteFixtureDir (done) {
-  wrench.rmdirRecursive(exports.dir, false, function (err) {
-    done();
-  });
-});
-before(function createFixtureDir () {
-  // DEV: There is no asynchronous flavor. We could use mkdirp but this is fine.
-  wrench.mkdirSyncRecursive(exports.dir);
-});
 
-// Create a directory specifically for this test
-exports.fixtureDir = function (name) {
-  var srcPath = path.join(__dirname, '/../test-files/', name);
-  var destPath = path.join(exports.dir, name);
-  before(function copyFixtures (done) {
-    wrench.copyDirRecursive(srcPath, destPath, done);
+// Define helper functions to work in fixture directory
+exports.mkdir = function (folderName) {
+  before(function mkdirFn () {
+    // Create our directory
+    this.fixtureDir = path.join(fixtureUtils.dir, folderName);
+    wrench.mkdirSyncRecursive(this.fixtureDir);
+
+    // Prevent accidents by guaranteeing test runs inside fixture dir
+    process.chdir(this.fixtureDir);
   });
-  before(function moveToDestPath () {
-    process.chdir(destPath);
+  after(function cleanupMkdir () {
+    // Prevent test leaks via cleanup
+    delete this.fixtureDir;
   });
-  after(function deleteDestPath (done) {
-    wrench.rmdirRecursive(destPath, false, function (err) {
-      done();
+};
+
+exports.exec = function (command) {
+  before(function execFn (done) {
+    // Assert `this.fixtureDir` exists
+    assert(this.fixtureDir, '`this.fixtureDir` was not defined. Did you run `fixtureUtils.mkdir`?');
+
+    // Run the command in our directory
+    process.chdir(this.fixtureDir);
+    exec(command, function handleExec (err, stdout, stderr) {
+      // Callback with the error
+      done(err);
     });
   });
-  return destPath;
 };
