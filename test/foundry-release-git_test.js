@@ -8,7 +8,7 @@ var fixtureUtils = require('./utils/fixtures');
 
 // TODO: Move git init logic into its own utility
 
-describe('Publishing', function () {
+describe('Committing', function () {
   describe('in a git folder', function () {
     before(function createGitFolder () {
       this.gitDir = path.join(fixtureUtils.dir, 'git_test');
