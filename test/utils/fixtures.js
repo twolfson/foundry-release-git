@@ -33,8 +33,8 @@ exports.mkdir = function (folderName) {
     delete this.fixtureDir;
     delete this.inFixtureDir;
 
-    // Remove the test directory
-    wrench.rmdirSyncRecursive(fixtureDir);
+    // // Remove the test directory
+    // wrench.rmdirSyncRecursive(fixtureDir);
   });
 };
 
@@ -46,6 +46,11 @@ exports.exec = function (command) {
     // Run the command in our directory
     process.chdir(this.fixtureDir);
     exec(command, function handleExec (err, stdout, stderr) {
+      // If there is stderr, log it
+      if (stderr) {
+        console.error('STDERR: ', stderr);
+      }
+
       // Callback with the error
       done(err);
     });
