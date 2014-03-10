@@ -16,7 +16,6 @@ describe('Publishing', function () {
 
     before(function publish (done) {
       this.inFixtureDir(function () {
-        console.log('hai');
         gitRelease.publish({
           version: '0.1.0',
           message: 'Release 0.1.0',
