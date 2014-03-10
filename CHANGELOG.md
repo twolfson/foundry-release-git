@@ -1,4 +1,6 @@
 # foundry-release-git changelog
+1.0.1 - Added tests against `publish` step
+
 1.0.0 - Moved to `foundry-release-spec@0.2.0` and `commit` step
 
 0.2.0 - Moved to `fixtureUtils` for git handling
