@@ -5,7 +5,7 @@ var wrench = require('wrench');
 var gitRelease = require('../');
 var fixtureUtils = require('./utils/fixtures');
 
-describe('Committing', function () {
+describe('Publishing', function () {
   describe('in a git folder', function () {
     fixtureUtils.mkdir('git_test');
     fixtureUtils.exec('git init');
