@@ -1,5 +1,5 @@
 // Load in dependencies
-var exec = require('child_process').exec;
+var childProcess = require('child_process');
 var path = require('path');
 var expect = require('chai').expect;
 var wrench = require('wrench');
@@ -26,7 +26,7 @@ describe('Committing', function () {
 
     it('adds a git tag', function (done) {
       this.inBundle(function () {
-        exec('git tag', function (err, stdout, stderr) {
+        childProcess.exec('git tag', function (err, stdout, stderr) {
           if (err) {
             return done(err);
           }
@@ -38,7 +38,7 @@ describe('Committing', function () {
 
     it('adds a git commit', function (done) {
       this.inBundle(function () {
-        exec('git log --format=oneline -n 1', function (err, stdout, stderr) {
+        childProcess.exec('git log --format=oneline -n 1', function (err, stdout, stderr) {
           if (err) {
             return done(err);
           }
@@ -50,15 +50,31 @@ describe('Committing', function () {
   });
 });
 
-describe.skip('Publishing', function () {
+describe.only('Publishing', function () {
   describe('in a git folder', function () {
     fixtureUtils.bundle.mkdir('publish_test');
     fixtureUtils.bundle.exec('git init');
     fixtureUtils.bundle.exec('touch a');
     fixtureUtils.bundle.exec('git add -A');
     fixtureUtils.bundle.exec('git commit -m "Initial commit =D"');
+    var _exec = childProcess.exec;
+    before(function stubExec () {
+      var that = this;
+      this.execCalls = [];
+      childProcess.exec = function (/* cmd, options, cb */) {
+        // Preserve the arguments
+        var args = [].slice.call(arguments);
+        that.execCalls.push(args);
 
-    // TODO: Fixture over `exec` calls
+        // Run the callback (err, stdout, stderr)
+        var cb = args[args.length - 1];
+        cb(null, '', '');
+      };
+    });
+    after(function restoreExec () {
+      childProcess.exec = _exec;
+    });
+
     before(function publish (done) {
       this.inBundle(function () {
         gitRelease.publish({
@@ -67,6 +83,13 @@ describe.skip('Publishing', function () {
           description: null
         }, done);
       });
+    });
+
+    it.skip('publishes the commit', function () {
+
+    });
+    it.skip('publishes the tags', function () {
+
     });
   });
 });
