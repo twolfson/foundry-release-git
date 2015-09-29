@@ -2,7 +2,7 @@
 
 [git][] release library for [foundry][]
 
-This tool creates reference commits and `git tag's` for [foundry][], a modular release management library.
+This command creates reference commits and `git tag's` for [foundry][], a modular release management library.
 
 [git]: http://git-scm.com/
 [foundry]: https://github.com/twolfson/foundry
