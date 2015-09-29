@@ -2,17 +2,20 @@
 
 [git][] release library for [foundry][]
 
-This is plugin creates reference commits and `git tag's` for [foundry][], a plugin based release management library.
+This tool creates reference commits and `git tag's` for [foundry][], a modular release management library.
 
 [git]: http://git-scm.com/
 [foundry]: https://github.com/twolfson/foundry
 
 ## Documentation
-This library was build to match the [foundry plugin specification][spec]. Documentation can be found at:
+This library was build to match the [foundry release specification][spec] and is written on top of [foundry-release-base][]. Documentation can be found at:
 
 https://github.com/twolfson/foundry-release-spec
 
+https://github.com/twolfson/foundry-release-base
+
 [spec]: https://github.com/twolfson/foundry-release-spec
+[foundry-release-base]: https://github.com/twolfson/foundry-release-base
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint via [grunt](https://github.com/gruntjs/grunt) and test via `npm test`.
