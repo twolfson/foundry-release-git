@@ -23,7 +23,7 @@
   ],
   "main": "lib/foundry-release-git",
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">= 0.10.0"
   },
   "bin": {
     "foundry-release-git": "bin/foundry-release-git"
