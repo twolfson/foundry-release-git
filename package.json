@@ -25,6 +25,9 @@
   "engines": {
     "node": ">= 0.8.0"
   },
+  "bin": {
+    "foundry-release-git": "bin/foundry-release-git"
+  },
   "scripts": {
     "test": "(test \"$VAGRANT\" = \"true\" || test \"$TRAVIS\" = \"true\" || (echo \"Tests must be run in enclosed environment (e.g. Vagrant, Travis) to prevent accidental publishes\n\" 1>&2 && exit 1)) && mocha --recursive"
   },
