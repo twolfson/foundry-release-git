@@ -51,5 +51,11 @@
     "git",
     "tag",
     "release"
-  ]
+  ],
+  "foundry": {
+    "releaseCommands": [
+      "foundry-release-git",
+      "foundry-release-npm"
+    ]
+  }
 }
