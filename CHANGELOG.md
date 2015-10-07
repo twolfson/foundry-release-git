@@ -1,4 +1,6 @@
 # foundry-release-git changelog
+2.0.0 - Moved to command format to match 2.0.0 spec
+
 1.1.0 - Added `specVersion` to support 1.1.0 spec
 
 1.0.1 - Added tests against `publish` step
