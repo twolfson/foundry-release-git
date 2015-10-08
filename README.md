@@ -19,7 +19,7 @@ https://github.com/twolfson/foundry-release-base
 
 ### Actions
 - On `commit`, we will:
-    1. Save any staged changes via `git commit` with the message from `foundry release` (e.g. `Release 1.0.0`)
+    1. Save staged changes via `git commit` with `foundry release's` message (e.g. `Release 1.0.0`)
     2. Create a `git tag` with the version (e.g. `1.0.0`)
 - On `publish`, we will push the branch and its tags (i.e. `git push`, `git push --tags`)
 
