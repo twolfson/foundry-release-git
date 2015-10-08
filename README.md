@@ -17,6 +17,12 @@ https://github.com/twolfson/foundry-release-base
 [spec]: https://github.com/twolfson/foundry-release-spec
 [foundry-release-base]: https://github.com/twolfson/foundry-release-base
 
+### Actions
+- On `commit`, we will:
+    1. Save any staged changes via `git commit` with the message from `foundry release` (e.g. `Release 1.0.0`)
+    2. Create a `git tag` with the version (e.g. `1.0.0`)
+- On `publish`, we will push the branch and its tags (i.e. `git push`, `git push --tags`)
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint via [grunt](https://github.com/gruntjs/grunt) and test via `npm test`.
 
