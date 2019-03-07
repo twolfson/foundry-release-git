@@ -1,4 +1,6 @@
 # foundry-release-git changelog
+2.0.3 - Upgraded to shell-quote@1.6.1 to fix GitHub vulnerability warning
+
 2.0.2 - Documented actions in README
 
 2.0.1 - Added previously unreleased `foundry-release` dependencies
