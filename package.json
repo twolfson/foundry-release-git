@@ -15,6 +15,7 @@
   "bugs": {
     "url": "https://github.com/twolfson/foundry-release-git/issues"
   },
+  "license": "Unlicense",
   "licenses": [
     {
       "type": "UNLICENSE",
