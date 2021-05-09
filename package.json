@@ -16,12 +16,6 @@
     "url": "https://github.com/twolfson/foundry-release-git/issues"
   },
   "license": "Unlicense",
-  "licenses": [
-    {
-      "type": "UNLICENSE",
-      "url": "https://github.com/twolfson/foundry-release-git/blob/master/UNLICENSE"
-    }
-  ],
   "main": "lib/foundry-release-git",
   "engines": {
     "node": ">= 0.10.0"
