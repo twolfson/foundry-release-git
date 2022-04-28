@@ -1,4 +1,6 @@
 # foundry-release-git changelog
+2.1.0 - Upgraded packages to vulnerabilities, via @striezel in #3
+
 2.0.5 - Removed legacy `licenses` key from `package.json`
 
 2.0.4 - Upgraded packages to fix deep vulnerability, via @striezel in #2
