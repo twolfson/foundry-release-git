@@ -10,4 +10,8 @@ before_script:
   - git config --global user.name "Foundry Test"
 
 notifications:
-  email: false
+  email:
+    recipients:
+      - todd@twolfson.com
+    on_success: change
+    on_failure: change

@@ -1,4 +1,6 @@
 # foundry-release-git changelog
+2.1.2 - Added Travis CI notifications to releases
+
 2.1.1 - Installed shell-quote@1.7.3 to fix execution vulnerability
 
 2.1.0 - Upgraded packages to vulnerabilities, via @striezel in #3
